@@ -10,6 +10,7 @@ namespace hms.Controllers
             {
                 context.Result = RedirectToAction(nameof(AccountController.Login), "Account");
             }
+            base.OnActionExecuting(context);
         }
     }
 }

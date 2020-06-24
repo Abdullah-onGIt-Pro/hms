@@ -22,7 +22,7 @@ namespace hms.Controllers
             _logger = logger;
             this.accountBO = accountBO;
         }
-
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
