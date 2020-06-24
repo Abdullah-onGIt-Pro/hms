@@ -134,17 +134,6 @@ namespace hms.Models
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<VInfectionMaster>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.ToTable("vInfectionMaster", "Common1");
-
-                entity.Property(e => e.AreaType).HasMaxLength(20);
-
-                entity.Property(e => e.StateName).HasMaxLength(30);
-            });
-
             OnModelCreatingPartial(modelBuilder);
         }
 
