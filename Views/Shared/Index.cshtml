@@ -1,0 +1,38 @@
+﻿@using System.Data
+@model System.Data.DataTable
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css"/>
+ 
+<script type="text/javascript" src="~/lib/DataTables/datatables.min.js"></script>
+
+<div class="text-center">
+    <table id="IndexTable" class="table table-bordered table-striped">
+        <thead>
+            
+    @foreach (DataColumn column in Model.Columns)
+    {
+        <td>@column.ColumnName</td>
+    }
+    </thead>
+    <tbody>
+        @foreach (DataRow row in Model.Rows)
+        {
+            <tr>                                
+                @foreach(var value in row.ItemArray){
+                <td>@Html.Raw(value)</td>
+                }
+            </tr>
+            
+        }
+    </tbody>
+    </table>
+
+</div>
+<script>
+    $(document).ready( function () {
+    $('#IndexTable').DataTable();
+} );
+</script>

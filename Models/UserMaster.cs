@@ -15,7 +15,7 @@ namespace hms.Models
         public int? CreatedBy { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public int? LastModifiedBy { get; set; }
-        public bool DeleteFlag { get; set; }
+        public bool? DeleteFlag { get; set; }
         public int HmsTenantAutoId { get; set; }
     }
 }

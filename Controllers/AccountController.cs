@@ -9,6 +9,8 @@ using hms.Models;
 using hms.BO;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace hms.Controllers
 {
@@ -37,10 +39,12 @@ namespace hms.Controllers
                 var claims = new List<Claim>();
                 claims.Add(new Claim("UserName", user.UserName));
 
-                var identity = new ClaimsIdentity(claims);
+                var identity = new ClaimsIdentity(claims,CookieAuthenticationDefaults.AuthenticationScheme);
                 var principal = new ClaimsPrincipal(identity);
                 await HttpContext.SignInAsync(principal);
-                actionResult = View("Dashboard");
+                HttpContext.Session.SetString(hmsConstants.userName,rec.UserName);
+                HttpContext.Session.SetInt32(hmsConstants.hmsTenatAuotId,rec.HmsTenantAutoId);
+                actionResult = RedirectToAction("Dashboard","Dashboard");
             }
             else
             {

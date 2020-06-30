@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using hms.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace hms.BO
 {
@@ -10,7 +11,7 @@ namespace hms.BO
 
         public AccountBO(hmsDBContext hmsDBContext)
         {
-            this.Context = Context;
+            this.Context = hmsDBContext;
         }
 
         public UserMaster ValidateUser(UserMaster user)
@@ -18,7 +19,9 @@ namespace hms.BO
             UserMaster rec = null;
             try
             {
-                rec = Context.UserMaster.FirstOrDefault(x => x.UserName == user.UserName && x.Password == user.Password);
+                rec = Context.UserMaster
+                        .FromSqlRaw("ValidateUserSP {0},{1},{2}",user.UserName,user.Password,user.HmsTenantAutoId)
+                        .AsEnumerable().FirstOrDefault();
             }
             catch (Exception ex)
             {
