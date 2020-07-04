@@ -7,6 +7,7 @@ namespace hms
         public static void AddScoped(this IServiceCollection services)
         {
             services.AddScoped<AccountBO>();
+            services.AddScoped<BaseBO>();
         }
     }
 }

@@ -5,6 +5,13 @@ namespace hms.Controllers
 {
     public class BaseController : Controller
     {
+        protected hmsViewBag hmsViewBag;
+        protected BaseBO baseBO;
+        public BaseController(BaseBO baseBO)
+        {
+            this.baseBO = baseBO;
+
+        }
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!HttpContext.User.Identity.IsAuthenticated)
@@ -13,7 +20,7 @@ namespace hms.Controllers
             }
             else
             {
-                hmsViewBag hmsViewBag = new hmsViewBag();
+                hmsViewBag = new hmsViewBag();
                 var ActionDescriptor = (Microsoft.AspNetCore.Mvc.Controllers.ControllerActionDescriptor)context.ActionDescriptor;
 
                 hmsViewBag.controllerName = ActionDescriptor.ControllerName;
@@ -23,11 +30,16 @@ namespace hms.Controllers
             base.OnActionExecuting(context);
         }
 
-        public IActionResult Index()
+        public virtual IActionResult Index()
         {
-            BaseBO baseBO = new BaseBO();
 
             return View(baseBO.GetIndexData("UserMaster"));
+        }
+       
+        public virtual IActionResult AddEdit(int id)
+        {
+
+            return View(baseBO.GetAddEditData(id,hmsViewBag.controllerName));
         }
     }
 }

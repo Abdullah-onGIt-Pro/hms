@@ -22,7 +22,7 @@ namespace hms.BO
 
                     conn.Open();
                     adapter.Fill(DataTable);
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -36,5 +36,39 @@ namespace hms.BO
             return DataTable;
         }
 
+        public DataSet GetAddEditData(int Id, string menuName)
+        {
+            DataSet dataSet = null;
+            if (Id > 0)
+            {
+                using (SqlConnection conn = new SqlConnection(hmsConstants.ConnectionString))
+                {
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("GetViewDataSP", conn);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@menuName", menuName);
+                        cmd.Parameters.AddWithValue("@Id", Id);
+                        cmd.Parameters.AddWithValue("@hmsTenantAutoId", "0");
+
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+
+                        conn.Open();
+                        adapter.Fill(dataSet);
+
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    finally
+                    {
+                        conn.Close();
+                    }
+                }
+
+            }
+            return dataSet;
+        }
     }
 }

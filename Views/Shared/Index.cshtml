@@ -2,14 +2,14 @@
 @model System.Data.DataTable
 @{
     ViewData["Title"] = "Index";
+    var hmsViewBag = ViewBag.hmsViewBag as hmsViewBag;
 }
 
 <link rel="stylesheet" type="text/css" href="~/lib/DataTables/datatables.min.css"/>
  
 <script type="text/javascript" src="~/lib/DataTables/datatables.min.js"></script>
-
-<div class="text-center">
-    <table id="IndexTable" class="table table-bordered table-striped">
+<a href="/@hmsViewBag.controllerName/AddEdit/0" class="btn">Add</a>
+    <table id="IndexTable" class="table table-condensed table-bordered table-striped">
         <thead>
             
     @foreach (DataColumn column in Model.Columns)
@@ -30,7 +30,6 @@
     </tbody>
     </table>
 
-</div>
 <script>
     $(document).ready( function () {
     $('#IndexTable').DataTable();
