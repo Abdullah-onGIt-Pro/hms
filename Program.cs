@@ -24,7 +24,8 @@ namespace hms
                     webBuilder.UseStartup<Startup>();
                 });
 
-//
+//UseKestrel(options=>options.Listen(IPAddress.Parse("10.0.0.4"),80))
+                    
             //     public static IHostBuilder CreateHostBuilder(string[] args) =>
             // Host.CreateDefaultBuilder(args)
             //     .ConfigureWebHostDefaults(webBuilder =>
