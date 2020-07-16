@@ -6,10 +6,12 @@ namespace hms.CustomTagHelpers
     {
         public string name { get; set; }
         public string label { get; set; }
+
+        public string value { get; set; }
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "div";
-            output.Content.SetHtmlContent($"<label for=\"{name}\">{label}</label><input name=\"{name}\"/>");
+            output.Content.SetHtmlContent($"<label for=\"{name}\">{label}</label><input name=\"{name}\" value=\"{value}\" />");
         }
     }
 }

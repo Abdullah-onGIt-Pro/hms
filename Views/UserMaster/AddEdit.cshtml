@@ -1,10 +1,14 @@
+@model UserMaster
 @{
     ViewData["Title"] = "User Master";
+    var hmsViewBag  = ViewBag.hmsViewBag as hmsViewBag;
 }
 <h1>User Master</h1>
 
 <form asp-action="CreateUpdate">  
-
-    <hms-text-box name="@nameof(UserMaster.UserName)" label="Name"></hms-text-box>
-    <hms-text-box name="@nameof(UserMaster.Password)" label="password"></hms-text-box>
+<input type="hidden" name="@nameof(UserMaster.UserMasterAutoId)" value="@Model.UserMasterAutoId"/>
+    <hms-text-box name="@nameof(UserMaster.UserName)" value="@Model.UserName" label="Name"></hms-text-box>
+    <hms-text-box name="@nameof(UserMaster.Password)" value="@Model.Password" label="password"></hms-text-box>
+    <button type="submit">Create / Update</button>
+    <a href="/@hmsViewBag.controllerName/Index" class="btn btn-block">Cancel</a>
 </form>

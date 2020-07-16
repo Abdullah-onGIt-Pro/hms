@@ -36,10 +36,10 @@ namespace hms.BO
             return DataTable;
         }
 
-        public DataSet GetAddEditData(int Id, string menuName)
+        public DataSet GetAddEditData(int AutoId, string menuName)
         {
             DataSet dataSet = null;
-            if (Id > 0)
+            if (AutoId > 0)
             {
                 using (SqlConnection conn = new SqlConnection(hmsConstants.ConnectionString))
                 {
@@ -48,7 +48,7 @@ namespace hms.BO
                         SqlCommand cmd = new SqlCommand("GetViewDataSP", conn);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@menuName", menuName);
-                        cmd.Parameters.AddWithValue("@Id", Id);
+                        cmd.Parameters.AddWithValue("@AutoId", AutoId);
                         cmd.Parameters.AddWithValue("@hmsTenantAutoId", "0");
 
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);

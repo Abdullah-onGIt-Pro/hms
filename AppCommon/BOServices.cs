@@ -8,6 +8,7 @@ namespace hms
         {
             services.AddScoped<AccountBO>();
             services.AddScoped<BaseBO>();
+            services.AddScoped<UserMasterBO>();
         }
     }
 }

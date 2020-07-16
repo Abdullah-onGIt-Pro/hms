@@ -36,10 +36,10 @@ namespace hms.Controllers
             return View(baseBO.GetIndexData("UserMaster"));
         }
        
-        public virtual IActionResult AddEdit(int id)
-        {
+        // public virtual IActionResult AddEdit(int id)
+        // {
 
-            return View(baseBO.GetAddEditData(id,hmsViewBag.controllerName));
-        }
+        //     return View(baseBO.GetAddEditData(id,hmsViewBag.controllerName));
+        // }
     }
 }

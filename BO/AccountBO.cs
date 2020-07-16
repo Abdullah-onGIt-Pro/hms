@@ -22,7 +22,7 @@ namespace hms.BO
                 rec = Context.UserMaster
                         .FromSqlRaw("ValidateUserSP {0},{1},{2}",user.UserName,user.Password,user.HmsTenantAutoId)
                         .AsEnumerable().FirstOrDefault();
-            }
+            } 
             catch (Exception ex)
             {
 
