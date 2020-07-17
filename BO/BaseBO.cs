@@ -36,6 +36,7 @@ namespace hms.BO
             return DataTable;
         }
 
+        [Obsolete]
         public DataSet GetAddEditData(int AutoId, string menuName)
         {
             DataSet dataSet = null;
@@ -70,5 +71,7 @@ namespace hms.BO
             }
             return dataSet;
         }
+
+
     }
 }
